@@ -1,0 +1,123 @@
+﻿@model IEnumerable<GuideToLodz.Models.Trip>
+
+@{
+    ViewBag.Title = "ListOfTrips";
+}
+<style>
+    a{
+        color:pink;
+    }
+</style>
+
+<!--
+<script type="application/json" id="backendData">
+    @Html.Raw(ViewBag.JSONData)
+</script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/angular.min.js"></script>
+
+<script>
+
+    var viewData = JSON.parse($("#backendData").text());
+
+    var list = angular.module('list', []);
+
+    list.controller('listController', function ($scope) {
+
+        $scope.trips = viewData.trips;
+        $scope.p = viewData.preferences;
+
+        $scope.preferences = [{
+            "IsWinterish":p.IsWinterish,
+            "IsSummerish":p.IsSummerish,
+            "IsHistorical":p.IsHistorical,
+            "IsGourmet" : p.IsGourmet,
+            "IsForKids": p.IsForKids,
+            "IsCultural": p.IsCultural,
+            "IsInCentre ": p.IsInCentre,
+            "IsRecreational": p.IsRecreational,
+            "IsSport ": p.IsSport,
+            "Price ": p.Price,
+            "SuggestedTime" : p.SuggestedTime
+        }];
+
+        $scope.preferencesIncluded = [];
+
+        $scope.includePreference = function (preference) {
+            var i = $.inArray(preference, $scope.preferencesIncluded);
+            if (i > -1) {
+                $scope.preferencesIncluded.splice(i, 1);
+            } else {
+                $scope.preferencesIncluded.push(preference);
+            }
+            
+        }
+
+        $scope.PreferenceFilter = function (trips) {
+            if ($scope.preferencesIncluded.length > 0) {
+                if ($.inArray(preferences, $scope.preferencesIncluded) < 0)
+                    return;
+            }
+            return trips;
+        }
+    });
+</script>
+-->
+
+<style>
+th{
+        background-color:#061539;
+        color:white;
+    }
+    td{
+        background-color:#7887AB;
+        color:white;
+    }
+</style>
+
+<h2>We suggest you:</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Localisation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.SuggestedTime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Localisation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+       
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.SuggestedTime) h
+        </td>
+        <td>
+            @Html.ActionLink("See more details", "Details", new { id = item.Id }, new { @class = "btn btn-info" })
+        </td>
+        
+    </tr>
+}
+
+</table>
+<div>
+    @Html.ActionLink("Change your preferences", "ChoicePanel", Model, new { @class = "btn btn-warning" })
+</div>

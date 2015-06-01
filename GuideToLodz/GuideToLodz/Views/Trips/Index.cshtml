@@ -1,0 +1,166 @@
+﻿@model GuideToLodz.Models.ProductListViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+
+   
+   
+   
+    th{
+        background-color:#061539;
+        color:white;
+    }
+    td{
+        background-color:#7887AB;
+        color:white;
+    }
+    
+div.pager {
+    text-align:right;
+    border-top:2px solid silver;
+    padding: .5em 0 0 0; 
+    margin-top:1em;
+}
+
+div.pager a{
+    font-size:1.1em;
+    color:#666;
+    text-decoration:none;
+    padding:0 .4em 0 .4em;
+}
+
+div.pager a:hover{
+    background-color:silver;
+}
+
+div.pager a:active {
+    background-color:#353535;color:white;
+}
+
+</style>
+<script type="application/json" id="backendData">
+    @Html.Raw(ViewBag.JSONData)
+</script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/angular.min.js"></script>
+
+<script>
+
+    var viewData = JSON.parse($("#backendData").text());
+
+    var index = angular.module('index', []);
+
+    index.controller('indexController', function ($scope) {
+        $scope.trips = viewData.trips;
+        $scope.searchtrips = viewData.searchtrips;
+        $scope.query = {};
+        $scope.show = false;
+
+        $scope.close = function () {
+            $scope.query = {};
+            $scope.show = false;
+        }
+
+    });
+
+</script>
+
+
+
+<div>
+    <p >
+        @Html.ActionLink("Create New Place", "Create", null, new { @class = "btn btn-success" ,@style="float:left" })
+    </p>
+    <h2 class="col-md-offset-4" style="color:#337ab7">Manage your trips</h2>
+</div>
+
+
+
+<table class="table" ng-app="index" ng-controller="indexController" ng-cloak>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Location
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+            Is for Kids?
+        </th>
+        <!--
+           <th>
+               Is Winterish?
+           </th>
+           <th>
+               Is Summerish ?
+           </th>-->
+        <th>
+            Suggested time to spent
+        </th>
+        <th id="hide">
+            <button class="btn btn-success" ng-click="show=true" ng-hide="show==true" >Search</button>
+            <input style="width:150px" type="text" ng-model="query['Name']" ng-show="show==true"  />
+            <button class="btn btn-danger" ng-click="close()" ng-show="show==true" > X </button>
+        </th>
+    </tr>
+    <tr ng-repeat="trip in trips" ng-hide="show==true">
+        <td class="col-md-3">
+            {{trip.Name}}
+        </td>
+        <td class="col-md-2">
+            {{trip.Localisation}}
+        </td>
+        <td class="col-md-1">
+            {{trip.Price}}
+        </td>
+        <td class="col-md-1" style="text-align:center">
+            {{trip.IsForKids}}
+        </td>
+
+        <td class="col-md-1">
+            {{trip.SuggestedTime}} h
+        </td>
+        <td class="col-md-2">
+            <a class="btn btn-info" data-ng-href="@Url.Action("Edit","Trips")/{{trip.Id}}">Edit</a>
+            <a class="btn btn-info" data-ng-href="@Url.Action("Details","Trips")/{{trip.Id}}">Details</a>
+            <a class="btn btn-info" data-ng-href="@Url.Action("Delete","Trips")/{{trip.Id}}">Delete</a>
+        </td>
+    </tr>
+    <tr ng-repeat="trip in searchtrips | filter : query" ng-show="show==true">
+        <td class="col-md-3">
+            {{trip.Name}}
+        </td>
+        <td class="col-md-2">
+            {{trip.Localisation}}
+        </td>
+        <td class="col-md-1">
+            {{trip.Price}}
+        </td>
+        <td class="col-md-1" style="text-align:center">
+            {{trip.IsForKids}}
+        </td>
+
+        <td class="col-md-1">
+            {{trip.SuggestedTime}} h
+        </td>
+        <td class="col-md-2">
+            <a class="btn btn-info" data-ng-href="@Url.Action("Edit","Trips")/{{trip.Id}}">Edit</a>
+            <a class="btn btn-info" data-ng-href="@Url.Action("Details","Trips")/{{trip.Id}}">Details</a>
+            <a class="btn btn-info" data-ng-href="@Url.Action("Delete","Trips")/{{trip.Id}}">Delete</a>
+        </td>
+    </tr>
+
+
+</table>
+
+<div class="pager">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("Index", new { page=x}))
+</div>
+
+

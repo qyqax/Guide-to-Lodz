@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Guide to Lodz</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+   
+</head>
+
+<body style="background-color:#D7DEEB;color:#337ab7">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:#337ab7;border-color:#061539">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Guide to Lodz", "Index", "Trips", new { area = "" }, new { @class = "navbar-brand" , @style = "color:black" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav" style="">
+                    <li>@Html.ActionLink("Home", "Index", "Home", new {@style="color:black" })</li>
+                    <li>@Html.ActionLink("About", "About", "Home", new { @style = "color:black" })</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { @style = "color:black" })</li>
+                    <li>@Html.ActionLink("Client", "ChoicePanel", "Trips", new { @style = "color:black" })</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Guide to Lodz</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

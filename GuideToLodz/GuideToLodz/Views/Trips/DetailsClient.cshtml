@@ -1,0 +1,122 @@
+﻿@model GuideToLodz.Models.Trip
+
+@{
+    ViewBag.Title = "DetailsClient";
+}
+
+<h2>DetailsClient</h2>
+
+<div>
+    <h4>Trip</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Localisation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Localisation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsForKids)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsForKids)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsInCentre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsInCentre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsHistorical)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsHistorical)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsRecreational)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsRecreational)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSport)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsSport)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsGourmet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsGourmet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsCultural)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsCultural)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsWinterish)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsWinterish)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSummerish)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsSummerish)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SuggestedTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SuggestedTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+   
+    @Html.ActionLink("Back to List", "ListOfTrips", new { p = @ViewBag.preferences})
+</p>
