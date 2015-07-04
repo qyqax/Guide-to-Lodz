@@ -5,6 +5,7 @@ Guide to Lodz
 
 Ewa Godlewska
 Tomasz Kaczmarek
+Mateusz Kroczyński
 
 Join us!
 
